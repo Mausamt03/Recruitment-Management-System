@@ -1,0 +1,9 @@
+.profile-section {
+    display: grid;
+    gap: 12px;
+    padding: 16px;
+}
+
+.resume-link {
+    margin-top: 10px;
+}

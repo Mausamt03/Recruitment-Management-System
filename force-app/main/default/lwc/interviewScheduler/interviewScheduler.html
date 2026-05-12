@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Schedule Interview">
+        <lightning-combobox
+            label="Application"
+            options={applicationOptions}
+            onchange={handleAppChange}>
+        </lightning-combobox>
+
+        <lightning-input
+            type="datetime"
+            label="Interview Date"
+            onchange={handleDateChange}>
+        </lightning-input>
+
+        <lightning-combobox
+            label="Interview Type"
+            options={typeOptions}
+            onchange={handleTypeChange}>
+        </lightning-combobox>
+
+        <lightning-button
+            variant="brand"
+            label="Schedule"
+            onclick={scheduleInterview}>
+        </lightning-button>
+    </lightning-card>
+</template>

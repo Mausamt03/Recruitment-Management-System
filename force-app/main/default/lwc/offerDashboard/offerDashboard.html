@@ -1,0 +1,50 @@
+<template>
+    <lightning-card title="Offer Dashboard">
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        <div class="offer-container">
+
+            <template for:each={offers} for:item="offer">
+                <div key={offer.Id} class="offer-card">
+
+                    <div class="offer-header">
+                        <strong>{offer.candidateName}</strong>
+
+                        <lightning-badge
+                            label={offer.Offer_Status__c}
+                            class={offer.badgeClass}>
+                        </lightning-badge>
+                    </div>
+
+                    <div>Salary: ₹{offer.Offer_Amount__c}</div>
+
+                    <div class="button-row">
+
+                        <lightning-button
+                            label="Accept"
+                            variant="success"
+                            data-id={offer.Id}
+                            onclick={handleAccept}
+                            disabled={offer.isClosed}>
+                        </lightning-button>
+
+                        <lightning-button
+                            label="Reject"
+                            variant="destructive"
+                            data-id={offer.Id}
+                            onclick={handleReject}
+                            disabled={offer.isClosed}>
+                        </lightning-button>
+
+                    </div>
+
+                </div>
+            </template>
+
+        </div>
+
+    </lightning-card>
+</template>

@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="My Applications">
+
+        <div class="slds-p-around_medium">
+
+            <lightning-datatable
+                key-field="Id"
+                data={applications}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+
+        </div>
+
+    </lightning-card>
+</template>

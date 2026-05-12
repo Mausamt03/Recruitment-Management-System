@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Open Positions">
+        <template if:true={jobs}>
+            <lightning-datatable
+                key-field="Id"
+                data={jobs}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+
+        <template if:true={error}>
+            <div class="slds-text-color_error">
+                {error}
+            </div>
+        </template>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="My Offers" icon-name="standard:contract">
+
+        <div class="slds-p-around_medium">
+
+            <template for:each={offers} for:item="offer">
+                <div key={offer.Id} class="slds-box slds-m-bottom_small">
+
+                    <h3>Candidate: {offer.Job_Application__r.Candidate__r.Name}</h3>
+
+                    <p>Amount: ₹{offer.Offer_Amount__c}</p>
+                    <p>Status: {offer.Offer_Status__c}</p>
+
+                    <lightning-button
+                        label="Accept"
+                        data-id={offer.Id}
+                        onclick={handleAccept}
+                        variant="brand">
+                    </lightning-button>
+
+                    <lightning-button
+                        label="Reject"
+                        data-id={offer.Id}
+                        onclick={handleReject}
+                        variant="destructive"
+                        class="slds-m-left_small">
+                    </lightning-button>
+
+                </div>
+            </template>
+
+        </div>
+
+    </lightning-card>
+</template>

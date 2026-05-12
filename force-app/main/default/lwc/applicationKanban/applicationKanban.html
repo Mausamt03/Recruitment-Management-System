@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title="Application Pipeline">
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        <div class="kanban-container">
+            <template for:each={statusColumns} for:item="column">
+                <div key={column.status}
+                     class="kanban-column"
+                     ondragover={handleDragOver}
+                     ondrop={handleDrop}
+                     data-status={column.status}>
+
+                    <!-- Column Header -->
+                    <div class="column-header">
+                        {column.status}
+                    </div>
+
+                    <!-- Cards -->
+                    <template for:each={column.records} for:item="record">
+                        <div key={record.Id}
+                             class="kanban-card"
+                             draggable="true"
+                             data-id={record.Id}
+                             ondragstart={handleDragStart}>
+
+                            <strong>{record.Candidate__r.Name}</strong>
+                            <div>{record.Job_Requisition__r.Name}</div>
+
+                            <!-- STATUS BADGE -->
+                            <lightning-badge
+                                label={record.Application_Status__c}
+                                class={record.badgeClass}>
+                            </lightning-badge>
+
+                        </div>
+                    </template>
+
+                </div>
+            </template>
+        </div>
+
+    </lightning-card>
+</template>

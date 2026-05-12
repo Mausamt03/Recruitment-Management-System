@@ -1,0 +1,75 @@
+<template>
+    <lightning-card title="Candidate Profile">
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        <template if:true={candidate}>
+            <div class="profile-section">
+
+                <lightning-input label="Name"
+                                 value={candidate.Name}
+                                 data-field="Name"
+                                 onchange={handleChange}>
+                </lightning-input>
+
+                <lightning-input type="email"
+                                 label="Email"
+                                 value={candidate.Email__c}
+                                 data-field="Email__c"
+                                 onchange={handleChange}>
+                </lightning-input>
+
+                <lightning-input type="phone"
+                                 label="Phone"
+                                 value={candidate.Phone__c}
+                                 data-field="Phone__c"
+                                 onchange={handleChange}>
+                </lightning-input>
+
+                <lightning-input type="number"
+                                 label="Experience (Years)"
+                                 value={candidate.Years_of_Experience__c}
+                                 data-field="Years_of_Experience__c"
+                                 onchange={handleChange}>
+                </lightning-input>
+
+                <lightning-input type="currency"
+                                 label="Expected Salary"
+                                 value={candidate.Expected_Salary__c}
+                                 data-field="Expected_Salary__c"
+                                 onchange={handleChange}>
+                </lightning-input>
+
+                <div class="resume-link">
+                    <a href={candidate.Resume_Link__c} target="_blank">
+                        View Resume
+                    </a>
+                </div>
+
+                <lightning-button variant="brand"
+                                  label="Save"
+                                  onclick={handleSave}>
+                </lightning-button>
+                <lightning-card title="Resume Upload">
+    <lightning-file-upload
+        record-id={recordId}
+        accepted-formats=".pdf,.doc,.docx"
+        onuploadfinished={handleUploadFinished}>
+    </lightning-file-upload>
+</lightning-card>
+            </div>
+        </template>
+
+        <lightning-card title="Applications">
+            <lightning-datatable
+                key-field="Id"
+                data={applications}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </lightning-card>
+
+    </lightning-card>
+</template>

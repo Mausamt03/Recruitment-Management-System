@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title="Available Jobs">
+
+        <div class="slds-p-around_medium">
+
+            <template for:each={jobs} for:item="job">
+                <div key={job.Id} class="slds-box slds-m-bottom_small">
+                    <h3>{job.Name}</h3>
+                    <p>Department: {job.Department__c}</p>
+
+                    <lightning-button
+                        label="Apply"
+                        data-id={job.Id}
+                        onclick={openForm}
+                        variant="brand">
+                    </lightning-button>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+
+    <!-- APPLY MODAL -->
+    <template if:true={showForm}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <h2>Apply for Job</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+
+                    <lightning-input label="Full Name" onchange={handleChange} data-field="name"></lightning-input>
+                    <lightning-input label="Email" onchange={handleChange} data-field="email"></lightning-input>
+                    <lightning-input label="Phone" onchange={handleChange} data-field="phone"></lightning-input>
+                    <lightning-input label="Current Company" onchange={handleChange} data-field="company"></lightning-input>
+                    <lightning-input type="number" label="Years of Experience" onchange={handleChange} data-field="exp"></lightning-input>
+                    <lightning-input type="number" label="Expected Salary" onchange={handleChange} data-field="salary"></lightning-input>
+                    <lightning-input label="Resume Link" onchange={handleChange} data-field="resume"></lightning-input>
+
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closeForm}></lightning-button>
+                    <lightning-button label="Submit" variant="brand" onclick={submitApplication}></lightning-button>
+                </footer>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
